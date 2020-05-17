@@ -19,7 +19,6 @@ struct AddSpecificTimeSheetView: View {
         _addTimeStart = addTimeStart
         _addTimeEnd = addTimeEnd
         _setTime = setTime
-        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
@@ -44,7 +43,10 @@ struct AddSpecificTimeSheetView: View {
             }) {
                 Text("Done")
             })
+        }.onAppear {
+            UITableView.appearance().backgroundColor = .clear
         }
+
     }
 }
 

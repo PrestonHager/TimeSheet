@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A09C7D9245CDE950062E51A /* ProjectHistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A09C7D8245CDE950062E51A /* ProjectHistoryRowView.swift */; };
 		3A21A0E62457B4380041AE63 /* Timesheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A21A0E42457B4380041AE63 /* Timesheet.xcdatamodeld */; };
+		3A45637E245903DD003C25AF /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45637C245903DD003C25AF /* Project+CoreDataClass.swift */; };
+		3A45637F245903DD003C25AF /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45637D245903DD003C25AF /* Project+CoreDataProperties.swift */; };
 		3A4BB408244D426100DEDE47 /* AddSpecificTimeSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4BB407244D426100DEDE47 /* AddSpecificTimeSheetView.swift */; };
-		3A5F39D9245147B0004DC5BA /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F39D8245147B0004DC5BA /* ProjectManager.swift */; };
 		3A64E197244AD07000D2912C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E196244AD07000D2912C /* AppDelegate.swift */; };
 		3A64E199244AD07000D2912C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E198244AD07000D2912C /* SceneDelegate.swift */; };
 		3A64E19E244AD07000D2912C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E19D244AD07000D2912C /* ContentView.swift */; };
@@ -43,9 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A09C7D8245CDE950062E51A /* ProjectHistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHistoryRowView.swift; sourceTree = "<group>"; };
 		3A21A0E52457B4380041AE63 /* Timesheet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timesheet.xcdatamodel; sourceTree = "<group>"; };
+		3A45637C245903DD003C25AF /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A45637D245903DD003C25AF /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4BB407244D426100DEDE47 /* AddSpecificTimeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpecificTimeSheetView.swift; sourceTree = "<group>"; };
-		3A5F39D8245147B0004DC5BA /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		3A64E193244AD07000D2912C /* Timesheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timesheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A64E196244AD07000D2912C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A64E198244AD07000D2912C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,13 +122,15 @@
 				3A64E196244AD07000D2912C /* AppDelegate.swift */,
 				3A64E198244AD07000D2912C /* SceneDelegate.swift */,
 				3A64E19D244AD07000D2912C /* ContentView.swift */,
-				3A5F39D8245147B0004DC5BA /* ProjectManager.swift */,
-				3A64E1CF244AD3DA00D2912C /* ProjectView.swift */,
 				3A6AF42B244F8A960028082D /* Extensions.swift */,
+				3A64E1CF244AD3DA00D2912C /* ProjectView.swift */,
+				3A09C7D8245CDE950062E51A /* ProjectHistoryRowView.swift */,
 				3A4BB407244D426100DEDE47 /* AddSpecificTimeSheetView.swift */,
 				3A64E1CD244AD19C00D2912C /* NewProjectView.swift */,
 				3A64E1C9244AD0CA00D2912C /* ProjectRowView.swift */,
 				3A64E1CB244AD0DA00D2912C /* OldProject.swift */,
+				3A45637C245903DD003C25AF /* Project+CoreDataClass.swift */,
+				3A45637D245903DD003C25AF /* Project+CoreDataProperties.swift */,
 				3A64E19F244AD07200D2912C /* Assets.xcassets */,
 				3A21A0E42457B4380041AE63 /* Timesheet.xcdatamodeld */,
 				3A64E1A4244AD07200D2912C /* LaunchScreen.storyboard */,
@@ -299,8 +305,10 @@
 				3A4BB408244D426100DEDE47 /* AddSpecificTimeSheetView.swift in Sources */,
 				3A64E199244AD07000D2912C /* SceneDelegate.swift in Sources */,
 				3A64E1D0244AD3DA00D2912C /* ProjectView.swift in Sources */,
+				3A09C7D9245CDE950062E51A /* ProjectHistoryRowView.swift in Sources */,
 				3A64E1CC244AD0DA00D2912C /* OldProject.swift in Sources */,
-				3A5F39D9245147B0004DC5BA /* ProjectManager.swift in Sources */,
+				3A45637E245903DD003C25AF /* Project+CoreDataClass.swift in Sources */,
+				3A45637F245903DD003C25AF /* Project+CoreDataProperties.swift in Sources */,
 				3A21A0E62457B4380041AE63 /* Timesheet.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

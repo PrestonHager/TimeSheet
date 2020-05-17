@@ -13,21 +13,31 @@ struct ProjectRowView: View {
     
     var body: some View {
         HStack {
-            Text(project.name)
+            Text(project.name ?? "Unknown")
             Spacer()
-            if Int(project.totalTime / 3600) == 1 {
+            if Int((project.totalTime?.doubleValue ?? 0) / 3600) == 1 {
                 Text("1 hour")
             } else {
-                Text("\(Int(project.totalTime / 3600)) hours")
+                Text("\(Int((project.totalTime?.doubleValue ?? 0) / 3600)) hours")
             }
         }
     }
 }
 
 struct ProjectRowView_Previews: PreviewProvider {
-    static var previewProject = Project(name: "Test Project")
-    
+    static var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     static var previews: some View {
+        let previewProject = Project()
+        previewProject.id = UUID()
+        previewProject.name = "Test Project"
+        previewProject.isWorkingOn = false
+        previewProject.totalTime = NSNumber(value: 3600)
+        previewProject.history = NSMutableArray(array: [
+            DateInterval(start: Date(), end: Date().addingTimeInterval(TimeInterval(3600)))
+        ])
+        try! context.save()
+        
         return ProjectRowView(project: previewProject)
     }
 }

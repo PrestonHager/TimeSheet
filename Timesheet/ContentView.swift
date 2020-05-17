@@ -9,32 +9,48 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var projectManager: ProjectManager
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Project.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Project.name, ascending: true)]) var projects: FetchedResults<Project>
+    
+    @State var showAddProjectView = false
     
     var body: some View {
         NavigationView {
-            List(projectManager.projects.indices, id: \.self) { index in
-                NavigationLink(destination: ProjectView(project: Binding(
-                    get: { return self.projectManager.projects[index] },
-                    set: { newValue in return self.projectManager.projects[index] = newValue }
-                ))) {
-                    ProjectRowView(project: self.projectManager.projects[index])
-                }
+            List {
+                ForEach(projects, id: \.id) { project in
+                    NavigationLink(destination: ProjectView(project: project)) {
+                        HStack {
+                            ProjectRowView(project: project)
+                        }
+                    }
+                }.onDelete(perform: deleteProjects)
             }
             .navigationBarTitle("Timesheet")
-            .navigationBarItems(trailing: NavigationLink(destination: NewProjectView()) {
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+                self.showAddProjectView.toggle()
+                }) {
                 Image(systemName: "plus")
                     .padding()
                     .imageScale(.large)
             })
+        }.sheet(isPresented: $showAddProjectView) {
+            NewProjectView()
         }
+    }
+    
+    func deleteProjects(at offsets: IndexSet) {
+        for offset in offsets {
+            let project = projects[offset]
+            managedObjectContext.delete(project)
+        }
+        try? managedObjectContext.save()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previewProjectManager = ProjectManager()
-    
+    static var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     static var previews: some View {
-        return ContentView().environmentObject(previewProjectManager)
+        return ContentView().environment(\.managedObjectContext, context)
     }
 }

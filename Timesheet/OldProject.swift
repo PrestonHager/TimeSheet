@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Project: Identifiable, Codable {
+struct SProject: Identifiable, Codable {
     // Unchanging variables
     let id = UUID()
     let startTime = Date()

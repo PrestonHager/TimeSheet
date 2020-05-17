@@ -9,44 +9,57 @@
 import SwiftUI
 
 struct NewProjectView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var projectManager: ProjectManager
     
     @State var projectName: String = ""
 
     @State var validationErrored = false
+    @State var showErrorMessage = false
     @State var errorMessage = "Some error message."
     // TODO: turn errored fields red to alert user.
     // @State var invalidFields = {}
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(validationErrored ? "Error: \(errorMessage)" : "")
-                    .bold()
-                    .foregroundColor(.red)
+        NavigationView {
+            VStack {
+                TextField("Project Name", text: $projectName)
+                    .autocapitalization(.words)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                Spacer()
+                Button(action: {
+                    // Don't forget to validate the parameters!
+                    if (self.validate()) {
+                        // What to do if we want to add the project described.
+                        let newProject = Project(context: self.managedObjectContext)
+                        newProject.id = UUID()
+                        newProject.name = self.projectName
+                        newProject.isWorkingOn = false
+                        newProject.totalTime = NSNumber(value: 0)
+                        newProject.history = NSMutableArray()
+                        // Add project to database by just saving the context.
+                        try? self.managedObjectContext.save()
+                        // And then dismiss this view to go back to the home screen.
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }) {
+                    Text("Add")
+                        .font(.system(size: 24.0))
+                        .bold()
+                        .padding()
+                }.padding()
             }
-            TextField("Project Name", text: $projectName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            Spacer()
-            Button(action: {
-                // Don't forget to validate the parameters!
-                if (self.validate()) {
-                    // What to do if we want to add the project described.
-                    let newProject = Project(name: self.projectName)
-                    self.projectManager.addProject(newProject)
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+            .navigationBarTitle("New Project", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("Add")
-//                    .font(.system(size: 24.0))
-                    .bold()
-                    .padding()
-            }.padding()
+                Text("Cancel")
+            })
+            .alert(isPresented: $showErrorMessage) {
+                Alert(title: Text("Added New Project Failed"), message: Text(self.errorMessage), dismissButton: .default(Text("Ok")))
+            }
         }
-        .navigationBarTitle("New Project")
     }
     
     func validate() -> Bool {
@@ -55,12 +68,16 @@ struct NewProjectView: View {
             errorMessage = "Project Name must not be empty."
             validationErrored = true
         }
+        showErrorMessage = validationErrored
         return !validationErrored
     }
 }
 
-struct NewProjectView_Previews: PreviewProvider {    
+struct NewProjectView_Previews: PreviewProvider {
+    static var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     static var previews: some View {
-        NewProjectView().environmentObject(ProjectManager())
+        // NOTE: you must play the preview to view this.
+        ContentView(showAddProjectView: true).environment(\.managedObjectContext, context)
     }
 }
