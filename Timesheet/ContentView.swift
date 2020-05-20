@@ -13,12 +13,20 @@ struct ContentView: View {
     @FetchRequest(entity: Project.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Project.name, ascending: true)]) var projects: FetchedResults<Project>
     
     @State var showAddProjectView = false
+    @State var updateProjectView = false
     
     var body: some View {
         NavigationView {
+            // TODO: find a better solution to updating this view as this does cause some jitteriness.
+            if (updateProjectView) {
+                Text("Updating")
+                .onAppear {
+                    self.updateProjectView = false
+                }
+            }
             List {
                 ForEach(projects, id: \.id) { project in
-                    NavigationLink(destination: ProjectView(project: project)) {
+                    NavigationLink(destination: ProjectView(project: project, updateProjectView: self.$updateProjectView)) {
                         HStack {
                             ProjectRowView(project: project)
                         }
@@ -34,7 +42,7 @@ struct ContentView: View {
                     .imageScale(.large)
             })
         }.sheet(isPresented: $showAddProjectView) {
-            NewProjectView()
+            NewProjectView().environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
     

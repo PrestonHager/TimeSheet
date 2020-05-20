@@ -21,7 +21,6 @@
 		3A64E1B1244AD07300D2912C /* TimesheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1B0244AD07300D2912C /* TimesheetTests.swift */; };
 		3A64E1BC244AD07300D2912C /* TimesheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1BB244AD07300D2912C /* TimesheetUITests.swift */; };
 		3A64E1CA244AD0CA00D2912C /* ProjectRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1C9244AD0CA00D2912C /* ProjectRowView.swift */; };
-		3A64E1CC244AD0DA00D2912C /* OldProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1CB244AD0DA00D2912C /* OldProject.swift */; };
 		3A64E1CE244AD19C00D2912C /* NewProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1CD244AD19C00D2912C /* NewProjectView.swift */; };
 		3A64E1D0244AD3DA00D2912C /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E1CF244AD3DA00D2912C /* ProjectView.swift */; };
 		3A6AF42C244F8A960028082D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6AF42B244F8A960028082D /* Extensions.swift */; };
@@ -65,7 +64,6 @@
 		3A64E1BB244AD07300D2912C /* TimesheetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetUITests.swift; sourceTree = "<group>"; };
 		3A64E1BD244AD07300D2912C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A64E1C9244AD0CA00D2912C /* ProjectRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRowView.swift; sourceTree = "<group>"; };
-		3A64E1CB244AD0DA00D2912C /* OldProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProject.swift; sourceTree = "<group>"; };
 		3A64E1CD244AD19C00D2912C /* NewProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectView.swift; sourceTree = "<group>"; };
 		3A64E1CF244AD3DA00D2912C /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		3A6AF42B244F8A960028082D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -122,15 +120,14 @@
 				3A64E196244AD07000D2912C /* AppDelegate.swift */,
 				3A64E198244AD07000D2912C /* SceneDelegate.swift */,
 				3A64E19D244AD07000D2912C /* ContentView.swift */,
-				3A6AF42B244F8A960028082D /* Extensions.swift */,
 				3A64E1CF244AD3DA00D2912C /* ProjectView.swift */,
 				3A09C7D8245CDE950062E51A /* ProjectHistoryRowView.swift */,
 				3A4BB407244D426100DEDE47 /* AddSpecificTimeSheetView.swift */,
 				3A64E1CD244AD19C00D2912C /* NewProjectView.swift */,
 				3A64E1C9244AD0CA00D2912C /* ProjectRowView.swift */,
-				3A64E1CB244AD0DA00D2912C /* OldProject.swift */,
 				3A45637C245903DD003C25AF /* Project+CoreDataClass.swift */,
 				3A45637D245903DD003C25AF /* Project+CoreDataProperties.swift */,
+				3A6AF42B244F8A960028082D /* Extensions.swift */,
 				3A64E19F244AD07200D2912C /* Assets.xcassets */,
 				3A21A0E42457B4380041AE63 /* Timesheet.xcdatamodeld */,
 				3A64E1A4244AD07200D2912C /* LaunchScreen.storyboard */,
@@ -306,7 +303,6 @@
 				3A64E199244AD07000D2912C /* SceneDelegate.swift in Sources */,
 				3A64E1D0244AD3DA00D2912C /* ProjectView.swift in Sources */,
 				3A09C7D9245CDE950062E51A /* ProjectHistoryRowView.swift in Sources */,
-				3A64E1CC244AD0DA00D2912C /* OldProject.swift in Sources */,
 				3A45637E245903DD003C25AF /* Project+CoreDataClass.swift in Sources */,
 				3A45637F245903DD003C25AF /* Project+CoreDataProperties.swift in Sources */,
 				3A21A0E62457B4380041AE63 /* Timesheet.xcdatamodeld in Sources */,

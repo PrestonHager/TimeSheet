@@ -12,6 +12,7 @@ struct ProjectView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     var project: Project
+    @Binding var updateProjectView: Bool
     
     // Adding a specific time view's variables.
     @State var showAddTime = false
@@ -54,6 +55,9 @@ struct ProjectView: View {
             }
             Spacer()
         }
+        .onDisappear {
+            self.updateProjectView = true
+        }
         .onAppear {
             UITableView.appearance().backgroundColor = .clear
         }
@@ -77,6 +81,7 @@ struct ProjectView: View {
 
 struct ProjectView_Previews: PreviewProvider {
     static var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @State static var previewUpdateProjectView = false
     
     static var previews: some View {
         let previewProject = Project(context: context)
@@ -89,6 +94,6 @@ struct ProjectView_Previews: PreviewProvider {
         ])
         try! context.save()
         
-        return ProjectView(project: previewProject).environment(\.managedObjectContext, context)
+        return ProjectView(project: previewProject, updateProjectView: $previewUpdateProjectView).environment(\.managedObjectContext, context)
     }
 }

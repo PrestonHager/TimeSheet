@@ -78,6 +78,6 @@ struct NewProjectView_Previews: PreviewProvider {
 
     static var previews: some View {
         // NOTE: you must play the preview to view this.
-        ContentView(showAddProjectView: true).environment(\.managedObjectContext, context)
+        NewProjectView().environment(\.managedObjectContext, context)
     }
 }
