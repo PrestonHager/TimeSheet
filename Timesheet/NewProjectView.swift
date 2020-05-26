@@ -37,7 +37,7 @@ struct NewProjectView: View {
                         newProject.name = self.projectName
                         newProject.isWorkingOn = false
                         newProject.totalTime = NSNumber(value: 0)
-                        newProject.history = NSMutableArray()
+                        newProject.history = try! NSKeyedArchiver.archivedData(withRootObject: NSMutableArray(array: []), requiringSecureCoding: false)
                         // Add project to database by just saving the context.
                         try? self.managedObjectContext.save()
                         // And then dismiss this view to go back to the home screen.

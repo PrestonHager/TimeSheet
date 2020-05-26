@@ -49,7 +49,7 @@ struct ProjectView: View {
                     .padding()
                     .font(.headline)
                 Text("Total hours worked on: \(Int((self.project.totalTime?.doubleValue ?? 0)/3600))")
-                List(self.project.history! as! [DateInterval], id: \.self) { interval in
+                List(self.project.getHistory() as! [DateInterval], id: \.self) { interval in
                     ProjectHistoryRowView(interval: interval)
                 }
             }
@@ -89,9 +89,9 @@ struct ProjectView_Previews: PreviewProvider {
         previewProject.name = "Test Project"
         previewProject.isWorkingOn = false
         previewProject.totalTime = NSNumber(value: 3600)
-        previewProject.history = NSMutableArray(array: [
+        previewProject.history = try! NSKeyedArchiver.archivedData(withRootObject: NSMutableArray(array: [
             DateInterval(start: Date(), end: Date().addingTimeInterval(TimeInterval(3600)))
-        ])
+        ]), requiringSecureCoding: false)
         try! context.save()
         
         return ProjectView(project: previewProject, updateProjectView: $previewUpdateProjectView).environment(\.managedObjectContext, context)

@@ -22,15 +22,17 @@ extension Project: Identifiable {
     @NSManaged public var isWorkingOn: Bool
     @NSManaged public var workingStartTime: Date?
     @NSManaged public var totalTime: NSNumber?
-    @NSManaged public var history: NSMutableArray?
+    @NSManaged public var history: Data?
     @NSManaged public var lastWorkedOn: Date?
-
+    
     func toggle() {
         if (isWorkingOn) {
             // Add the current time interval to history and add to totalTime.
             lastWorkedOn = Date()
             let interval = DateInterval(start: workingStartTime!, end: lastWorkedOn!)
-            history?.add(interval)
+            let loadedHistory = getHistory()
+            loadedHistory.add(interval)
+            self.history = try! NSKeyedArchiver.archivedData(withRootObject: loadedHistory, requiringSecureCoding: false)
             addTotalTime(interval.duration)
         } else {
             // Create a workingStartTime of now.
@@ -44,7 +46,9 @@ extension Project: Identifiable {
             lastWorkedOn = end
         }
         let interval = DateInterval(start: start, end: end)
-         history?.add(interval)
+        let loadedHistory = getHistory()
+        loadedHistory.add(interval)
+        self.history = try! NSKeyedArchiver.archivedData(withRootObject: loadedHistory, requiringSecureCoding: false)
         addTotalTime(interval.duration)
     }
     
@@ -54,6 +58,10 @@ extension Project: Identifiable {
         } else {
             totalTime = NSNumber(value: time)
         }
+    }
+    
+    func getHistory() -> NSMutableArray {
+        return try! (NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(self.history!) as? NSMutableArray)!
     }
     
 }

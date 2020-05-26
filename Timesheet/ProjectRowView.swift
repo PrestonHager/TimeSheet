@@ -33,9 +33,9 @@ struct ProjectRowView_Previews: PreviewProvider {
         previewProject.name = "Test Project"
         previewProject.isWorkingOn = false
         previewProject.totalTime = NSNumber(value: 3600)
-        previewProject.history = NSMutableArray(array: [
+        previewProject.history = try! NSKeyedArchiver.archivedData(withRootObject: NSMutableArray(array: [
             DateInterval(start: Date(), end: Date().addingTimeInterval(TimeInterval(3600)))
-        ])
+        ]), requiringSecureCoding: false)
         try! context.save()
         
         return ProjectRowView(project: previewProject)
